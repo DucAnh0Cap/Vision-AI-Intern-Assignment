@@ -27,7 +27,7 @@ class TrainingSimpleCNN(BaseTask):
                     
                 self.optimizer.zero_grad()
                 
-                loss = self.loss_fn(out.flatten(), items['label'])
+                loss = self.loss_fn(out, items['label'])
                 loss.backward()
 
                 self.optimizer.step()
@@ -50,7 +50,7 @@ class TrainingSimpleCNN(BaseTask):
                 with torch.no_grad():   
                     out = self.model(items)
                 
-                loss = self.loss_fn(out), items['label'])
+                loss = self.loss_fn(out, items['label'])
                 this_loss = loss.item()
                 running_loss += this_loss
 
