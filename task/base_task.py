@@ -17,7 +17,7 @@ class BaseTask:
         self.epoch = config.TRAINING['EPOCH']
         self.running_epoch = 0
         
-        self.load_datasets(config.DATASET)
+        self.load_datasets(config.DATA)
         self.create_dataloaders(config)
         config.TRAINING
         self.patience = config.TRAINING.PATIENCE
