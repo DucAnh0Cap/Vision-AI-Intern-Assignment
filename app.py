@@ -15,6 +15,8 @@ checkpoint = torch.load(checkpoint_path, map_location=torch.device("cpu"))
 
 model = Simple_CNN(config.MODEL)
 model.load_state_dict(checkpoint["state_dict"], strict=False)
+model.to("cpu")
+
 model.eval()
 
 # Load labels
@@ -39,6 +41,7 @@ if uploaded_file is not None:
     input_tensor = transform(image).unsqueeze(0)
 
     with torch.inference_mode():
+        input_tensor = transform(image).unsqueeze(0).to("cpu")
         output = model(input_tensor)
         pred = output.argmax(dim=-1).item()
 
