@@ -110,15 +110,15 @@ class TrainingSimpleCNN(BaseTask):
     def create_dataloaders(self, config):
         self.train_dataloader = DataLoader(
             self.train_dataset,
-            16
+            config.TRAINING.BATCH_SIZE
         )
         
         self.test_dataloader = DataLoader(
             self.test_dataset,
-            16
+            config.TRAINING.BATCH_SIZE
         )
         
         self.dev_dataloader = DataLoader(
             self.dev_dataset,
-            16
+            config.TRAINING.BATCH_SIZE
         )

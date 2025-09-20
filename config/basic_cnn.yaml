@@ -5,6 +5,7 @@ TRAINING:
     EPOCH: 100
     DEVICE: cuda
     SCORE: accuracy
+    BATCH_SIZE: 32
     WARMUP: 200
     PATIENCE: 5
     CHECKPOINT_PATH: saved_models
@@ -17,9 +18,8 @@ MODEL:
     OUT_CHANNEL: 32
     KERNEL_SIZE: 3
     NUM_CLASSES: 2
+
 DATA:
-    BATCH_SIZE: 16
-    
     NUM_ITEMS: 24983
     IMAGE_FOLDER: data/images
     JSON_PATH:
