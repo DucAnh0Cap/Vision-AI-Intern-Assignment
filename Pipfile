@@ -4,13 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-torch = "*"
 pillow = "*"
-torchvision = "*"
 tqdm = "*"
 pyyaml = "*"
 yacs = "*"
 streamlit = "*"
+torch = "*"
+torchvision = "*"
+torchaudio = "*"
 
 [dev-packages]
 
