@@ -87,14 +87,12 @@ class TrainingSimpleCNN(BaseTask):
             transforms.RandomResizedCrop(224),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
-            transforms.Lambda(lambda x: x.repeat(3, 1, 1) if x.shape[0] == 1 else x), # Convert grayscale to RGB
         ])
         
         test_transform = transforms.Compose([
             transforms.Resize(256),       # keep aspect ratio
             transforms.CenterCrop(224),   # crop center
             transforms.ToTensor(),
-            transforms.Lambda(lambda x: x.repeat(3, 1, 1) if x.shape[0] == 1 else x), # Convert grayscale to RGB
         ])
 
         self.train_dataset = DogCatDataset(config.DATA.JSON_PATH.TRAIN,
