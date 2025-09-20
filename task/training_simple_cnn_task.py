@@ -18,7 +18,7 @@ class TrainingSimpleCNN(BaseTask):
         self.model.train()
 
         running_loss = 0
-        with tqdm(desc='Epoch %d - Training with BCE with Logit Loss' % self.running_epoch, unit='it', total=len(train_dataloader)) as pbar:
+        with tqdm(desc='Epoch %d - Training with Cross Entropy Loss' % self.running_epoch, unit='it', total=len(train_dataloader)) as pbar:
             for it, items in enumerate(train_dataloader):
                 for key, value in items.items():
                     if isinstance(value, torch.Tensor):
@@ -36,19 +36,19 @@ class TrainingSimpleCNN(BaseTask):
 
                 pbar.set_postfix(loss=running_loss / (it + 1))
                 pbar.update()
-                self.scheduler.step()
+        self.scheduler.step()
 
     def evaluate_loss(self, dev_dataloader):
         self.model.eval()
         running_loss = 0
-        with tqdm(desc='Epoch %d - Training with BCE with Logit Loss' % self.running_epoch, unit='it', total=len(dev_dataloader)) as pbar:
+        with tqdm(desc='Epoch %d - Validation' % self.running_epoch, unit='it', total=len(dev_dataloader)) as pbar:
             for it, items in enumerate(dev_dataloader):
                 for key, value in items.items():
                     if isinstance(value, torch.Tensor):
                         items[key] = value.to(self.device)
                 
                 with torch.no_grad():   
-                    out = self.model(items)
+                    out = self.model(items['image'])
                 
                 loss = self.loss_fn(out, items['label'])
                 this_loss = loss.item()
@@ -65,7 +65,7 @@ class TrainingSimpleCNN(BaseTask):
             for it, items in enumerate(test_dataloader):
                 for key, value in items.items():
                     if isinstance(value, torch.Tensor):
-                        items[key] = value.squeeze().to(self.device)
+                        items[key] = value.to(self.device)
                 with torch.inference_mode():
                     outs = self.model(items['image']).softmax(dim=-1)
                 gt = items['label']
@@ -77,10 +77,12 @@ class TrainingSimpleCNN(BaseTask):
         gens = torch.stack(gens)
         
         acc = accuracy(gens, gts)
-        
-        return {
+        scores = {
             'accuracy': acc
         }
+
+        print(scores)
+        return scores
 
     def load_datasets(self, config):
         train_transform = transforms.Compose([
@@ -115,10 +117,10 @@ class TrainingSimpleCNN(BaseTask):
         
         self.test_dataloader = DataLoader(
             self.test_dataset,
-            config.TRAINING.BATCH_SIZE
+            1
         )
         
         self.dev_dataloader = DataLoader(
             self.dev_dataset,
-            config.TRAINING.BATCH_SIZE
+            1
         )
