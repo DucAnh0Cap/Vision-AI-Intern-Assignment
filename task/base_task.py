@@ -17,14 +17,12 @@ class BaseTask:
         self.epoch = config.TRAINING['EPOCH']
         self.running_epoch = 0
         
-        self.load_datasets(config.DATA)
+        self.load_datasets(config)
         self.create_dataloaders(config)
-        config.TRAINING
         self.patience = config.TRAINING.PATIENCE
         self.device = config.TRAINING.DEVICE
         self.score = config.TRAINING.SCORE
         self.warmup = config.TRAINING.WARMUP
-        self.scheduler = LambdaLR(self.optimizer, self.lambda_lr)
         self.checkpoint_path = config.TRAINING.CHECKPOINT_PATH
         
     def train(self):
@@ -54,11 +52,6 @@ class BaseTask:
         for key, value in dict_for_updating.items():
             dict_for_saving[key] = value
         torch.save(dict_for_saving, os.path.join(self.checkpoint_path, "last_model.pth"))
-
-    def lambda_lr(self, step):
-        warm_up = self.warmup
-        step += 1
-        return (self.model.d_model ** -.5) * min(step ** -.5, step * warm_up ** -1.5)
 
     def load_checkpoint(self, fname) -> dict:
         if not os.path.exists(fname):

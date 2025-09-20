@@ -99,13 +99,13 @@ class TrainingSimpleCNN(BaseTask):
                                            config.DATA,
                                            train_transform)
             
-        self.test_dataset =  DogCatDataset(config.DATA.JSON_PATH.TEST,
-                                           config.DATA,
-                                           test_transform)
-        
-        self.dev_dataset =  DogCatDataset(config.DATA.JSON_PATH.DEV,
+        self.test_dataset = DogCatDataset(config.DATA.JSON_PATH.TEST,
                                           config.DATA,
                                           test_transform)
+        
+        self.dev_dataset = DogCatDataset(config.DATA.JSON_PATH.DEV,
+                                         config.DATA,
+                                         test_transform)
         
     def create_dataloaders(self, config):
         self.train_dataloader = DataLoader(
