@@ -8,7 +8,13 @@ import os
 class BaseTask:
     def __init__(self, config, model):
         super().__init__()
-        self.model = model
+        self.patience = config.TRAINING.PATIENCE
+        self.device = config.TRAINING.DEVICE
+        self.score = config.TRAINING.SCORE
+        self.warmup = config.TRAINING.WARMUP
+        self.checkpoint_path = config.TRAINING.CHECKPOINT_PATH
+        
+        self.model = model.to(self.device)
         self.loss_fn = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(params=self.model.parameters(),
                                     lr=float(config.TRAINING.LEARNING_RATE),
@@ -19,11 +25,7 @@ class BaseTask:
         
         self.load_datasets(config)
         self.create_dataloaders(config)
-        self.patience = config.TRAINING.PATIENCE
-        self.device = config.TRAINING.DEVICE
-        self.score = config.TRAINING.SCORE
-        self.warmup = config.TRAINING.WARMUP
-        self.checkpoint_path = config.TRAINING.CHECKPOINT_PATH
+        
         
     def train(self):
         raise NotImplementedError 
