@@ -23,7 +23,7 @@ class DogCatDataset(Dataset):
         for k, v in json_data.items():
             annotation = {
                 'id': k,
-                'image_id': v['image_id'],
+                'image_id': v['image_name'],
                 'label': v['label']
             }
         
@@ -47,4 +47,7 @@ class DogCatDataset(Dataset):
             image = self.transform(image)
         label = item['label']
 
-        return image, label
+        return {
+            'image': image,
+            'label': label
+        }

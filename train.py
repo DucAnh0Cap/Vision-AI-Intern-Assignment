@@ -1,7 +1,7 @@
 import argparse
 
 import yaml
-from task.training_simple_cnn_task import TrainingSimpleCNN
+from task import TrainingSimpleCNN
 from model.simple_cnn import Simple_CNN
 
 

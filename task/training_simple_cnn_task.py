@@ -7,6 +7,7 @@ from evaluation import accuracy
 from torchvision import transforms
 from torch.utils.data import DataLoader
 
+
 class TrainingSimpleCNN(BaseTask):
     def __init__(self, config, model):
         super().__init__(config, model)
@@ -22,7 +23,7 @@ class TrainingSimpleCNN(BaseTask):
                 for key, value in items.items():
                     if isinstance(value, torch.Tensor):
                         items[key] = value.to(self.device)
-                out = self.model(items)  # interacted_rate, trigram_ids
+                out = self.model(items['image'])
                     
                 self.optimizer.zero_grad()
                 
@@ -66,8 +67,8 @@ class TrainingSimpleCNN(BaseTask):
                     if isinstance(value, torch.Tensor):
                         items[key] = value.squeeze().to(self.device)
                 with torch.inference_mode():
-                    outs = self.model(items).flatten()
-                    gt = items['labels']
+                    outs = self.model(items['image']).softmax(dim=-1)
+                gt = items['label']
                 gts.append(gt)
                 gens.append(outs)
 
@@ -95,15 +96,15 @@ class TrainingSimpleCNN(BaseTask):
         ])
 
         self.train_dataset = DogCatDataset(config.DATA.TRAIN,
-                                           config,
+                                           config.DATA,
                                            train_transform)
             
         self.test_dataset =  DogCatDataset(config.DATA.TEST,
-                                           config,
+                                           config.DATA,
                                            test_transform)
         
         self.dev_dataset =  DogCatDataset(config.DATA.DEV,
-                                          config,
+                                          config.DATA,
                                           test_transform)
         
     def create_dataloaders(self, config):

@@ -1,7 +1,5 @@
 import torch
 from torch import nn, optim
-import torch.nn.functional as F
-from tqdm import tqdm
 from shutil import copyfile
 from torch.optim.lr_scheduler import LambdaLR
 import os
@@ -13,21 +11,21 @@ class BaseTask:
         self.model = model
         self.loss_fn = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(params=self.model.parameters(),
-                                    lr=config['TRAINING']['LEARNING_RATE'],
+                                    lr=float(config.TRAINING.LEARNING_RATE),
                                     betas=(0.9, 0.98))
 
-        self.epoch = config['TRAINING']['EPOCH']
+        self.epoch = config.TRAINING['EPOCH']
         self.running_epoch = 0
         
         self.load_datasets(config.DATASET)
         self.create_dataloaders(config)
-
-        self.patience = config['TRAINING']['PATIENCE']
-        self.device = config['TRAINING']['DEVICE']
-        self.score = config['TRAINING']['SCORE']
-        self.warmup = config['TRAINING']['WARMUP']
+        config.TRAINING
+        self.patience = config.TRAINING.PATIENCE
+        self.device = config.TRAINING.DEVICE
+        self.score = config.TRAINING.SCORE
+        self.warmup = config.TRAINING.WARMUP
         self.scheduler = LambdaLR(self.optimizer, self.lambda_lr)
-        self.checkpoint_path = config['TRAINING']['CHECKPOINT_PATH']
+        self.checkpoint_path = config.TRAINING.CHECKPOINT_PATH
         
     def train(self):
         raise NotImplementedError 
