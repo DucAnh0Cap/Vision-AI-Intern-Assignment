@@ -95,15 +95,15 @@ class TrainingSimpleCNN(BaseTask):
             transforms.ToTensor(),
         ])
 
-        self.train_dataset = DogCatDataset(config.DATA.TRAIN,
+        self.train_dataset = DogCatDataset(config.DATA.JSON_PATH.TRAIN,
                                            config.DATA,
                                            train_transform)
             
-        self.test_dataset =  DogCatDataset(config.DATA.TEST,
+        self.test_dataset =  DogCatDataset(config.DATA.JSON_PATH.TEST,
                                            config.DATA,
                                            test_transform)
         
-        self.dev_dataset =  DogCatDataset(config.DATA.DEV,
+        self.dev_dataset =  DogCatDataset(config.DATA.JSON_PATH.DEV,
                                           config.DATA,
                                           test_transform)
         
