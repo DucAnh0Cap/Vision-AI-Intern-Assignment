@@ -10,6 +10,7 @@ torchvision = "*"
 tqdm = "*"
 pyyaml = "*"
 yacs = "*"
+streamlit = "*"
 
 [dev-packages]
 

@@ -13,6 +13,7 @@ TRAINING:
         TRAIN: data/train.json
         DEV:   data/dev.json
         TEST:  data/test.json
+
 MODEL:
     IN_CHANNEL: 3
     OUT_CHANNEL: 32
@@ -26,3 +27,5 @@ DATA:
         TRAIN: data/train.json
         DEV:   data/dev.json
         TEST:  data/test.json
+
+LABELS: ["Cat", "Dog"]
