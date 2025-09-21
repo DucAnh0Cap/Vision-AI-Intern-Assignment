@@ -7,6 +7,12 @@ The goal is **image classification of cats vs. dogs**, using PyTorch.
 Also includes inference mode (single image or folder) and saves results in JSON.  
 Accompanying this code is a short report describing the pipeline, challenges, and ideas for improvement.
 
+## Report
+Detailed reports are included in the [`report/`](report/) folder:
+
+- **Image Classification Report** – describes dataset, preprocessing, model, training, results, and error analysis.  
+- **Text-to-Speech (TTS) Report** – explains pipeline, challenges, and improvements.
+
 ## Environment & Requirements
 - Python version: `3.8+` 
 
@@ -71,9 +77,6 @@ python inference.py \
   --image-file path/to/folder \
   --checkpoint saved_models/best_model.pth
 ```
-
-## Report
-Reports for both Image Classification and TTS tasks are available in the [`report/`](report/) folder.
 
 ## How to Reproduce
 1.Clone this repo and install requirements
