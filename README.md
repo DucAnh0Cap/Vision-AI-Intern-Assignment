@@ -29,7 +29,7 @@ The dataset (images and JSON annotation files) can be downloaded [here](https://
 
 ## Model & Pipeline
 Model: A simple Convolutional Neural Network (CNN) defined in model.py
-Model's configuration can be changed in [config\basic_cnn.yaml](config\basic_cnn.yaml)
+Model's configuration can be changed in [`config/basic_cnn.yaml`](config/basic_cnn.yaml)
 Training setup:
 - Loss: cross-entropy
 
@@ -85,7 +85,7 @@ pip install -r requirements
 
 3. Train the model or use pretrained checkpoint
 ```bash
-python train --config-file config/basic_cnn.yaml
+python train --config-file [config/basic_cnn.yaml]
 ```
 
 4. Inference
