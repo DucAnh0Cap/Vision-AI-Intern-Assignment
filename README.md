@@ -31,21 +31,21 @@ The dataset (images and JSON annotation files) can be downloaded [here](https://
 Model: A simple Convolutional Neural Network (CNN) defined in model.py
 Model's configuration can be changed in [config\basic_cnn.yaml](config\basic_cnn.yaml)
 Training setup:
-    - Loss: cross-entropy
+- Loss: cross-entropy
 
-    - Optimizer: Adam with lr = 1e-3
+- Optimizer: Adam with lr = 1e-3
 
-    - Epochs: 100
+- Epochs: 100
 
-    - Batch size: 32
+- Batch size: 32
 
 Inference: Can run on a single image or folder of images.
 
 Outputs:
 
-    - Predictions printed to console
+- Predictions printed to console
 
-    - Results saved to inference_result.json with {filename: predicted_label} format.
+- Results saved to inference_result.json with {filename: predicted_label} format.
 
 ## How to run
 ### Trainig
