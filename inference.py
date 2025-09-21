@@ -50,7 +50,7 @@ def predict(image_path, config, checkpoint_path):
     if os.path.isdir(image_path):
         results = {}
         for f_ in os.listdir(image_path):
-            fpath = os.path.join(image_path, fname)
+            fpath = os.path.join(image_path, f_)
             if fpath.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
                 try:
                     results[f_] = _predict_single(fpath)
