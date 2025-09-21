@@ -1,13 +1,13 @@
 # Vision AI Intern Assignment
 
-## 📋 Overview
+## Overview
 
 This repository is my submission for the *Vision AI intern assignment* at Golden Owl.  
 The goal is **image classification of cats vs. dogs**, using PyTorch.  
 Also includes inference mode (single image or folder) and saves results in JSON.  
 Accompanying this code is a short report describing the pipeline, challenges, and ideas for improvement.
 
-## 🛠 Environment & Requirements
+## Environment & Requirements
 - Python version: `3.8+` 
 
 To install:
@@ -29,24 +29,23 @@ The dataset (images and JSON annotation files) can be downloaded [here](https://
 
 ## Model & Pipeline
 Model: A simple Convolutional Neural Network (CNN) defined in model.py
-Model's configuration can be changed in config\basic_cnn.yaml
+Model's configuration can be changed in [config\basic_cnn.yaml](config\basic_cnn.yaml)
 Training setup:
+    - Loss: cross-entropy
 
-    -Loss: cross-entropy
+    - Optimizer: Adam with lr = 1e-3
 
-    -Optimizer: Adam with lr = 1e-3
+    - Epochs: 100
 
-    -Epochs: 100
-
-    -Batch size: 32
+    - Batch size: 32
 
 Inference: Can run on a single image or folder of images.
 
 Outputs:
 
-    -Predictions printed to console
+    - Predictions printed to console
 
-    -Results saved to inference_result.json with {filename: predicted_label} format.
+    - Results saved to inference_result.json with {filename: predicted_label} format.
 
 ## How to run
 ### Trainig
@@ -73,13 +72,7 @@ python inference.py \
 ```
 
 ## Report
-Included in the file `report\NguyenDucAnh_Image_ classification_report.pdf`, you will find:
-
-    -Pipeline description 
-
-    -Challenges encountered
-
-    -Possible enhancements (e.g., data augmentation, deeper model, transfer learning, etc.)
+Reports for both Image Classification and TTS tasks are available in the [`report/`](report/) folder.
 
 ## How to Reproduce
 1.Clone this repo and install requirements
