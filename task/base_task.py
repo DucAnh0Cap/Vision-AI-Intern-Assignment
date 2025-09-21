@@ -86,7 +86,7 @@ class BaseTask:
             self.evaluate_loss(self.dev_dataloader)
             
             # val scores
-            scores = self.evaluation(self.test_dataloader)
+            scores = self.evaluation(self.dev_dataloader)
             val_score = scores[self.score]
 
             best = False

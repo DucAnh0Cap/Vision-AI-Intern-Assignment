@@ -50,7 +50,7 @@ def predict(image_path,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config-file", type=str, required=True)
+    parser.add_argument("--config-file", type=str, default="config/basic_cnn.yaml")
     parser.add_argument("--image-file", type=str, required=True)
     parser.add_argument("--checkpoint", type=str, default="saved_models/best_model.pth")
     args = parser.parse_args()
