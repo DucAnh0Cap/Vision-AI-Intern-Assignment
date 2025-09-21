@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "24e4c1ac7df1216667c7d7711d4df83e1c3bbf95d6d603e4679fd545820fce3b"
+            "sha256": "00fbf16e1e71f8f01ed132e83ddcf43c1320a9580e06975ea197cc997789b900"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -941,8 +941,9 @@
                 "sha256:e8e5bf982e87e2b59d932769938b698858c64cc53753894be25629bdf5cf2f46",
                 "sha256:e9f071f5b52a9f6970dc8a919694b27a91ae9dc08898b2b988abbef5eddfd1ae"
             ],
+            "index": "pypi",
             "markers": "python_full_version >= '3.9.0'",
-            "version": "==2.8.0"
+            "version": "==2.8.0+cpu"
         },
         "torchvision": {
             "hashes": [
@@ -973,7 +974,7 @@
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==0.23.0"
+            "version": "==0.23.0+cpu"
         },
         "tornado": {
             "hashes": [
