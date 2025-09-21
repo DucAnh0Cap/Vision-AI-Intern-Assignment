@@ -1,6 +1,7 @@
 import os
 import argparse
 import torch
+import json
 from torchvision import transforms
 from model import Simple_CNN
 from config.utils import get_config
@@ -46,9 +47,10 @@ def predict(image_path, config, checkpoint_path):
         pred = output.argmax(dim=-1).item()
         return labels[pred]
 
+    results = {}
+
     # If folder → loop through images
     if os.path.isdir(image_path):
-        results = {}
         for f_ in os.listdir(image_path):
             fpath = os.path.join(image_path, f_)
             if fpath.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
@@ -56,10 +58,12 @@ def predict(image_path, config, checkpoint_path):
                     results[f_] = _predict_single(fpath)
                 except Exception as e:
                     results[f_] = f"Error: {e}"
-        return results
     else:
-        # Single image
-        return _predict_single(image_path)
+        # Single image → still return dict
+        fname = os.path.basename(image_path)
+        results[fname] = _predict_single(image_path)
+
+    return results
 
 
 if __name__ == "__main__":
@@ -73,8 +77,11 @@ if __name__ == "__main__":
     config = get_config(args.config_file)
     predictions = predict(args.image_file, config, args.checkpoint)
 
-    if isinstance(predictions, dict):  # folder case
-        for fname, pred in predictions.items():
-            print(f"{fname}: {pred}")
-    else:
-        print(predictions)
+    # Print results
+    for fname, pred in predictions.items():
+        print(f"{fname}: {pred}")
+
+    # Save to JSON
+    with open("inference_result.json", "w") as f:
+        json.dump(predictions, f, indent=4)
+    print("Results saved to inference_result.json")
