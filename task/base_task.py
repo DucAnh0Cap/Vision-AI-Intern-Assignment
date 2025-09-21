@@ -115,3 +115,5 @@ class BaseTask:
                 break
 
             self.running_epoch += 1
+        test_scores = self.evaluation(self.test_dataloader)
+        print(f"Evaluation on test set: {test_scores}")
