@@ -59,7 +59,7 @@ def predict(image_path, config, checkpoint_path):
                 except Exception as e:
                     results[f_] = f"Error: {e}"
     else:
-        # Single image → still return dict
+        #  return dict
         fname = os.path.basename(image_path)
         results[fname] = _predict_single(image_path)
 
