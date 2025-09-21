@@ -96,6 +96,12 @@ python inference.py \
   --checkpoint saved_models/best_model.pth
 ```
 
+## Demo
+To run demo on local machine
+```bash
+streamlit run app.py
+```
+
 ## Notes
 Ensure the checkpoint is placed under saved_models/
 
