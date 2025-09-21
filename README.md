@@ -106,4 +106,5 @@ streamlit run app.py
 Ensure the checkpoint is placed under saved_models/
 
 If using GPU, ensure CUDA version is compatible
+
 # goldenowl-assignment
