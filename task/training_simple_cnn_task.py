@@ -119,7 +119,7 @@ class TrainingSimpleCNN(BaseTask):
         self.test_dataloader = DataLoader(
             self.test_dataset,
             batch_size=1,
-            collate_fn=self.test_dataloader.collate_fn
+            collate_fn=self.test_dataset.collate_fn
         )
         
         self.dev_dataloader = DataLoader(
