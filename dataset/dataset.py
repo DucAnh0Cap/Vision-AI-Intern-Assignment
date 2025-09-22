@@ -63,7 +63,7 @@ class DogCatDataset(Dataset):
             'image_id': item['image_id']
         }
 
-    def collate_fn(batch):
+    def collate_fn(self, batch):
         images = torch.stack([item["image"] for item in batch])
         labels = torch.tensor([item["label"] for item in batch])
         paths = [item["path"] for item in batch]  # keep as list
