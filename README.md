@@ -18,11 +18,13 @@ Detailed reports are included in the [`report/`](report/) folder:
 
 To install:
 ```bash
+%cd Vision-AI-Intern-Assignment
 pip install -r requirements.txt
 ```
 Or using Pipenv
 
 ```bash
+%cd Vision-AI-Intern-Assignment
 pip install pipenv
 pipenv install
 pipenv shell
