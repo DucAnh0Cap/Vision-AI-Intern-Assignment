@@ -47,7 +47,7 @@ class TrainingSimpleCNN(BaseTask):
                     if isinstance(value, torch.Tensor):
                         items[key] = value.to(self.device)
                 
-                with torch.no_grad():   
+                with torch.no_grad():  
                     out = self.model(items['image'])
                 
                 loss = self.loss_fn(out, items['label'])
